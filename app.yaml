@@ -1,4 +1,4 @@
-application: Boli
+application: el-boli
 version: 2
 runtime: python27
 api_version: 1
@@ -6,14 +6,40 @@ threadsafe: yes
 
 handlers:
 - url: /favicon\.ico
-  static_files: favicon.ico
+  static_files: res/favicon.ico
   upload: favicon\.ico
+  
+- url: /templates
+  static_dir: templates
+  application_readable: true
 
 - url: /res
   static_dir: res
+  
+- url: /error
+  script: handlers.error.app
+  
+- url: /info
+  script: handlers.info.app
+  
+- url: /manage_stories
+  script: handlers.manage_stories.app
+  login: required
+  
+- url: /stories/add
+  script: handlers.stories.add.app
+  login: required
+  
+- url: /stories/modify
+  script: handlers.stories.modify.app
+  login: required
+  
+- url: /stories/delete
+  script: handlers.stories.delete.app
+  login: required
 
-- url: .*
-  script: handlers/main.app
+- url: /
+  script: handlers.welcome.app
 
 libraries:
 - name: webapp2
