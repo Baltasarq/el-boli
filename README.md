@@ -1,3 +1,8 @@
-# Boli
+Boli
+====
 
-Web app to assist in the process of writing.
+An app for writers.
+
+
+<a href="http://boli.appspot.com/">Web</a>
+

@@ -1,0 +1,55 @@
+/* natacalc.css */
+
+body {
+    margin: 50px 50px 50px 50px;
+    background-color: white;
+	color: black;
+	font-familiy: serif;
+	font-size: 18pt
+}
+
+/* Sections */
+.clsHeader {
+    color: blue;
+    height: 10%
+}
+
+#dvInput {
+    height: 80%;
+    margin: 10px 10px 10px 10px
+}
+
+#dvAnswer {
+    font-size: 20pt;
+    height: 10%;
+    color: white;
+    background-color: red;
+    display: none
+}
+
+/* Form */
+#frmInput {
+	background-color: lightgray;
+}
+
+#h, #m, #s, #d {
+	border: none;
+    selection: none;
+    background-color: lightgray;
+    font-family: monospace;
+    font-size: 16pt
+}
+
+#dvButtons {
+    padding-top: 10pt;
+    background-color: white;
+    color: black
+}
+
+#btBack, #btSubmit, #btReset {
+    padding: 20px 20px 20px 20px;
+    margin-right: 20px;
+    background-color: blue;
+    color: white;
+    font-size: 14pt;
+}
