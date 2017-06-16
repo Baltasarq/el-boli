@@ -1,0 +1,33 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<div id="dvInnerContents">
+    <div id="dvSpecificActions" class="clsMenu">
+        <a href="/manage_chapters?story_id={{story.key.urlsafe()}}">
+            <img height="24px" width="24px" title="back" class="styled-button" src="/res/back.svg"/>
+        </a>
+        <br/>
+        <a href="/characters/add?story_id={{story.key.urlsafe()}}">
+            <img height="24px" width="24px" title="new character" class="styled-button" src="/res/add.svg"/>
+        </a>
+    </div>
+    <div id="dvTitle">
+        <img height="32px" width="32px" title="characters" src="/res/character.svg"/>
+        <b>Characters <i>{{story.title}}</i></b>
+    </div>
+    <div id="dvBody">
+        {% for character in characters %}
+            <div id="dvEntry"><p>
+            <a href="/characters/modify?story_id={{story.key.urlsafe()}}&character_id={{character.key.urlsafe()}}">
+                <img width="16px" height="16px" title="modify" class="styled-button" src="/res/modify.svg"/>
+            </a>
+            <a href="/characters/delete?story_id={{story.key.urlsafe()}}&character_id={{character.key.urlsafe()}}">
+                <img width="16px" height="16px" title="delete" class="styled-button" src="/res/delete.svg"/>
+            </a>
+            {% include "character_description.html" %}
+            </p></div>
+        {% else %}
+            No characters yet.
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

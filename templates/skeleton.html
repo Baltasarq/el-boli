@@ -16,11 +16,22 @@
         </tr>
     </table>
 </div>
-{% block content %}
-{% endblock %}
-<div id="dvGeneralActions">
-	<a href="http://calendar.google.com" target="_blank"><img height="16px" width="16px" title="calendario" class="styled-button" src="/res/calendar.svg"/></a>
-    <a href="http://mail.google.com" target="_blank"><img height="16px" width="16px" title="e.mail" class="styled-button" src="/res/email.svg"/></a>
+<div id="dvContainer">
+    <nav id="dvGeneralActions" class="clsMenu">
+        <a href="http://calendar.google.com" target="_blank">
+            <img height="24px" width="24px" title="calendario" class="styled-button" src="/res/calendar.svg"/>
+        </a>
+        <br/><a href="http://mail.google.com" target="_blank">
+            <img height="24px" width="24px" title="e.mail" class="styled-button" src="/res/email.svg"/>
+        </a>
+        <br/><a href="http://wordreference.com" target="_blank">
+            <img height="24px" width="24px" title="word reference" class="styled-button" src="/res/book.svg"/>
+        </a>
+    </nav>
+    <div id="dvContents">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 </body>
 </html>

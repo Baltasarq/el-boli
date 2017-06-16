@@ -17,13 +17,12 @@
 
     function chk() {
         var toret = true;
-        var edTitle = document.getElementById( "edTitle" );
-        var edSubtitle = document.getElementById( "edSubtitle" );
+        var edName = document.getElementById( "edName" );
         var edSummary = document.getElementById( "edSummary" );
 
         hideError();
 
-        if ( edTitle.value.trim().length == 0 ) {
+        if ( edName.value.trim().length == 0 ) {
             showError( "The title is mandatory." );
             toret = false;
         }
@@ -33,38 +32,35 @@
 </script>
 <div id="dvInnerContents">
     <div id="dvSpecificActions" class="clsMenu">
-        <a href="/manage_stories">
+        <a href="/manage_characters?story_id={{story.key.urlsafe()}}">
             <img width="24px" height="24px" alt="back" title="back" class="styled-button" src="/res/back.svg"/>
         </a>
     </div>
     <div id="dvTitle">
-    <p><img height="32px" width="32px" title="stories" src="/res/story.svg"/>Modify Story</p>
+    <p>Modify Story</p>
     </div>
     <div id="dvBody">
     <p>
-    <form id="frmModifyStory"
+    <form id="frmModifyCharacter"
         onsubmit="javascript: return chk();"
-        action="/stories/modify?story_id={{story.key.urlsafe()}}" method="post">
+        action="/characters/modify?character_id={{character.key.urlsafe()}}"
+        method="post">
         <p>
-        <b><label for="edTitle">Title</label></b> <input type="text" name="title" id="edTitle" size="80"
-                value="{{story.title}}"
+        <b><label for="edName">Title</label></b> <input type="text" name="name" id="edName" size="80"
+                value="{{character.name}}"
                 style="border:none;background-color:lightgray"/>
         <br/>
-        <b><label for="edSubtitle">Subtitle</label></b> <input type="text" name="subtitle" id="edSubtitle" size="80"
-                value="{{story.subtitle}}"
-                style="border:none;background-color:lightgray"/>
-        <br />
         <b><label for="edSummary">Summary</label></b>
         <textarea name="summary" id="edSummary" placeholder="Write some text..."
                 rows="10" cols="80"
-                style="border:none;background-color:lightgray">{{story.summary}}</textarea>
+                style="border:none;background-color:lightgray">{{character.summary}}</textarea>
         <br/>
         <p>
         <input type="image"
             class="styled-button"
             title="modify" alt="modify"
             width="16px" height="16px" src="/res/modify.svg"
-            onsubmit="javascript: document.frmModifyStory.submit()"/>
+            onsubmit="javascript: document.frmModifyCharacter.submit()"/>
         </p>
     </form>
     </div>

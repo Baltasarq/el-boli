@@ -1,0 +1,104 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<script type="text/javascript">
+    function inject(txt) {
+        var edText = document.getElementById( "edText" );
+
+        if ( edText.selectionStart >= 0 ) {
+            var startPos = edText.selectionStart;
+            var endPos = edText.selectionEnd;
+
+            edText.value = edText.value.substring( 0, startPos )
+                + txt
+                + edText.value.substring( endPos, edText.value.length );
+        } else {
+            edText.value += txt;
+        }
+
+        return;
+    }
+
+    function showCharacters() {
+        var dvCharacters = document.getElementById( "dvCharacters" );
+
+        if ( dvCharacters.style.display == "none" ) {
+            dvCharacters.style.display = "block";
+        } else {
+            dvCharacters.style.display = "none";
+        }
+    }
+    function hideError() {
+        document.getElementById( "dvError" ).style.display = "none";
+    }
+
+    function showError(msg) {
+        var dvError = document.getElementById( "dvError" );
+        var pError = document.createElement( "p" );
+
+        dvError.innerHTML = "";
+        dvError.appendChild( pError );
+        pError.appendChild( document.createTextNode( msg ) );
+        dvError.style.display = "block";
+    }
+
+    function chk() {
+        var toret = true;
+        var edText = document.getElementById( "edText" );
+
+        hideError();
+
+        if ( edText.value.trim().length == 0 ) {
+            showError( "The text is mandatory." );
+            toret = false;
+        }
+
+        return toret;
+    }
+</script>
+<div id="dvInnerContents">
+    <div id="dvSpecificActions" class="clsMenu">
+        <a href="/manage_sections?chapter_id={{chapter.key.urlsafe()}}">
+            <img width="24px" height="24px" alt="back" title="back" class="styled-button" src="/res/back.svg"/>
+        </a>
+    </div>
+    <div id="dvTitle">
+    <p><img height="32px" width="32px" title="sections" src="/res/section.svg"/>
+        Modify Section #{{section.num}} of <i>{{story.title}}: {{chapter.title}}</i></p>
+    </div>
+    <div id="dvBody">
+    <p>
+    <form id="frmModifySection"
+        onsubmit="javascript: return chk();"
+        action="/sections/modify?section_id={{section.key.urlsafe()}}" method="post">
+        <p>
+        <b><label for="edText">Contents</label></b>
+        <textarea name="text" id="edText" placeholder="Write some text..."
+                rows="25" cols="80"
+                style="border:none;background-color:lightgray">{{section.text}}</textarea>
+        <br/>
+        <p>
+        <input type="image"
+            class="styled-button"
+            title="modify" alt="modify"
+            width="16px" height="16px" src="/res/modify.svg"
+            onsubmit="javascript: document.frmModifySection.submit()"/>
+        </p>
+    </form>
+    </div>
+    <a href="javascript: showCharacters()">
+        <img class="styled-button" width="16px" height="16px" src="/res/character.svg"/>
+    </a>
+    <div id="dvCharacters" style="display: none">
+        <ul>
+        {%  for character in characters %}
+            <li><div id="dvCharacterReferenceEntry">
+                <b><a href="#" onclick="javascript: inject('{{character.name}}')">
+                {{character.name}}</b></a>: <i>{{character.summary[:120]}}...</i>
+            </div></li>
+        {%  endfor %}
+        </ul>
+    </div>
+    <div id="dvError">
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<div id="dvInnerContents">
+    <div id="dvSpecificActions" class="clsMenu">
+        <a href="/manage_chapters?story_id={{story.key.urlsafe()}}">
+            <img height="24px" width="24px" title="back" class="styled-button" src="/res/back.svg"/>
+        </a>
+        <br/>
+        <a href="/manage_characters?story_id={{story.key.urlsafe()}}">
+            <img height="24px" width="24px" title="characters" class="styled-button" src="/res/character.svg"/>
+        </a>
+        <br/>
+        <a href="/sections/add?chapter_id={{chapter.key.urlsafe()}}">
+            <img height="24px" width="24px" title="new story" class="styled-button" src="/res/add.svg"/>
+        </a>
+    </div>
+    <div id="dvTitle">
+        <img height="32px" width="32px" title="sections" src="/res/section.svg"/>
+        <b>Sections <i>{{story.title}}: {{chapter.title}}</i></b>
+    </div>
+    <div id="dvBody">
+        {% for section in sections %}
+            <div id="dvEntry"><p>
+            <a href="/sections/modify?section_id={{section.key.urlsafe()}}"><img width="16px" height="16px" title="modify" class="styled-button" src="/res/modify.svg"/></a>
+            <a href="/sections/delete?section_id={{section.key.urlsafe()}}"><img width="16px" height="16px" title="delete" class="styled-button" src="/res/delete.svg"/></a>
+            {% include "section_description.html" %}
+            </p></div>
+        {% else %}
+            No sections yet.
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # MIT License
-# (c) baltasar 2015
+# (c) baltasar 2017
 
 import webapp2
 from google.appengine.api import users
@@ -12,15 +12,12 @@ from model.appinfo import AppInfo
 from model.story import Story
 
 
-class DeleteStory(webapp2.RequestHandler):
+class DeleteChapter(webapp2.RequestHandler):
     def get(self):
         try:
-            id = self.request.GET['story_id']
+            chapter_id = self.request.GET['chapter_id']
         except:
-            id = None
-
-        if not id:
-            self.redirect("/error?msg=Key missing for deletion.")
+            self.redirect("/error?msg=Key missing for deletion (get).")
             return
 
         user = users.get_current_user()
@@ -30,7 +27,8 @@ class DeleteStory(webapp2.RequestHandler):
             access_link = users.create_logout_url("/")
 
             try:
-                story = ndb.Key(urlsafe=id).get()
+                chapter = ndb.Key(urlsafe=chapter_id).get()
+                story = Story.get_by_id(chapter.story)
             except:
                 self.redirect("/error?msg=Key was not found.")
                 return
@@ -40,38 +38,43 @@ class DeleteStory(webapp2.RequestHandler):
                 "user_name": user_name,
                 "access_link": access_link,
                 "story": story,
+                "chapter": chapter,
             }
 
             jinja = jinja2.get_jinja2(app=self.app)
-            self.response.write(jinja.render_template("delete_story.html", **template_values));
+            self.response.write(jinja.render_template("delete_chapter.html", **template_values));
         else:
             self.redirect("/")
 
     def post(self):
         try:
-            id = self.request.GET['story_id']
+            id = self.request.GET['chapter_id']
         except:
-            self.redirect("/error?msg=Key missing for deletion.")
+            id = None
+
+        if not id:
+            self.redirect("/error?msg=Key missing for deletion (post).")
             return
 
         user = users.get_current_user()
 
-        if user and id:
+        if user:
             try:
-                story = ndb.Key(urlsafe=id).get()
+                chapter = ndb.Key(urlsafe=id).get()
+                story = Story.get_by_id(chapter.story)
             except:
-                self.redirect("/error?msg=Key was not found.")
+                self.redirect("/error?msg=Key was not found for deletion.")
                 return
 
-            self.redirect("/info?msg=Story deleted: "
-                + story.title.encode("ascii", "replace")
-                + "&url=/manage_stories")
+            self.redirect("/info?msg=Chapter deleted: "
+                + (story.title + ": " + chapter.title).encode("ascii", "replace")
+                + "&url=/manage_chapters?story_id=" + story.key.urlsafe())
 
-            # Remove story
-            model.remove_data.remove_story(story.key)
+            # Remove chapter
+            model.remove_data.remove_chapter(chapter.key)
         else:
             self.redirect("/")
 
 app = webapp2.WSGIApplication([
-    ("/stories/delete", DeleteStory),
+    ("/chapters/delete", DeleteChapter),
 ], debug=True)

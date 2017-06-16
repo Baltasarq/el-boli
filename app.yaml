@@ -38,6 +38,54 @@ handlers:
   script: handlers.stories.delete.app
   login: required
 
+- url: /manage_chapters
+  script: handlers.manage_chapters.app
+  login: required
+
+- url: /chapters/add
+  script: handlers.chapters.add.app
+  login: required
+
+- url: /chapters/modify
+  script: handlers.chapters.modify.app
+  login: required
+
+- url: /chapters/delete
+  script: handlers.chapters.delete.app
+  login: required
+
+- url: /manage_characters
+  script: handlers.manage_characters.app
+  login: required
+
+- url: /characters/add
+  script: handlers.characters.add.app
+  login: required
+
+- url: /characters/modify
+  script: handlers.characters.modify.app
+  login: required
+
+- url: /characters/delete
+  script: handlers.characters.delete.app
+  login: required
+
+- url: /manage_sections
+  script: handlers.manage_sections.app
+  login: required
+
+- url: /sections/add
+  script: handlers.sections.add.app
+  login: required
+
+- url: /sections/modify
+  script: handlers.sections.modify.app
+  login: required
+
+- url: /sections/delete
+  script: handlers.sections.delete.app
+  login: required
+
 - url: /
   script: handlers.welcome.app
 

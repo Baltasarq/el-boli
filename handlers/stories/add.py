@@ -2,18 +2,18 @@
 # MIT License
 # (c) baltasar 2016
 
-import datetime
-
 import webapp2
 from google.appengine.api import users
 
+
+import model.story
 from model.story import Story
 
 
 class AddStory(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        num_stories = Story.query().count()
+        num_stories = len(Story.query().fetch(keys_only=True)) + 1
 
         if user:
             story = Story()
@@ -21,7 +21,7 @@ class AddStory(webapp2.RequestHandler):
             story.title = "Untitled " + str(num_stories)
             story.subtitle = "A new story."
             story.summary = "An awesome story."
-            key = story.put()
+            key = model.story.update(story)
             self.redirect("/stories/modify?story_id=" + key.urlsafe())
         else:
             self.redirect("/")

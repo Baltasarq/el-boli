@@ -1,81 +1,120 @@
+.body {
+    background-color: white;
+    font-family: "Arial", "Helvetica", sans-serif
+}
+
+label {
+    display: inline-block;
+    width: 25%;
+    font-size: 14pt;
+}
+
+input {
+    margin: 5px;
+    font-size: 12pt;
+    font-family: "Courier New", monospace
+}
+
+textarea {
+    margin: 5px;
+    font-size: 12pt
+}
+
+#dvInnerContents {
+    width: 90%;
+    margin: auto
+}
+
 #dvHeader {
-  margin: 1px;
-  font-size: 14px;
-  font-style: italic;
-  text-transform: capitalize;
-  color: white;
-  background-color: #040a35;
-  font-size: 14pt
+    margin: 1px;
+    font-size: 14pt;
+    font-style: italic;
+    text-transform: capitalize;
+    color: white;
+    background-color: green;
 }
 
 #dvTitle {
-  margin: 5px;
-  background-color: black;
-  color: white;
-  font-size: 14pt
+    margin: 5px;
+    color: black;
+    font-weight: bolder;
+    font-size: 16pt;
+    background-color: lightgray
 }
 
-#dvStories {
-  margin: 20px;
-  padding: 20px;
+#dvBody {
+    margin: 20px;
+    padding: 20px;
 }
 
-#tblStories {
-  background-color: lightgray;
-  font-size:12pt;
+#dvEntry {
+    background-color: lightgray;
+    font-size: 12pt;
+}
+
+#dvCharacterReferenceEntry {
+    background-color: dimgray;
+    color: white;
+    font-size: 12pt;
 }
 
 #dvError {
-  display: none;
-  color: white;
-  background-color: red;
-  margin: 20px;
-  padding: 10px;
-  font-size: 16pt;
-  font-weight: bold;
+    display: none;
+    color: white;
+    background-color: red;
+    margin: 20px;
+    padding: 10px;
+    font-size: 16pt;
+    font-weight: bold
 }
 
 #dvWarning {
-  color: black;
-  background-color: yellow;
-  margin: 20px;
-  padding: 10px;
-  font-size: 16pt;
-  font-weight: bold;
+    color: black;
+    background-color: yellow;
+    margin: 20px;
+    padding: 10px;
+    font-size: 16pt;
+    font-weight: bold
+}
+
+.clsMenu {
+    margin: 0px 5px 5px 5px;
+    padding: 0px 5px 5px 5px;
+    font-weight: bolder;
+    font-size: 10pt;
+    text-align: center;
+    position: fixed;
+    top: 25%
 }
 
 #dvSpecificActions {
-  margin: 5px;
-  background-color: black;
-  font-weight: bolder;
-  font-size: 10pt
+    background-color: white;
+    left: 0
 }
 
 #dvGeneralActions {
-  margin: 5px;
-  background-color: #040a35;
-  font-weight: bolder;
-  font-size: 10pt
+    background-color: white;
+    right: 0
 }
 
 input.button {
-  background-color: black;
-  color: blue
+    background-color: black;
+    color: blue
 }
 
 /* Hyperlinks */
 a {
-	color: blue;
+	color: lightgray;
 	text-decoration:none;
 }
 
 a:hover {
-	color: darkblue;
+	color: lightgreen;
 	text-decoration:none
 }
 
 a:visited {
-	color: blue;
+	color: lightgray;
 	text-decoration:none
 }
 

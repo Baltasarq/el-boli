@@ -10,16 +10,15 @@ from webapp2_extras import jinja2
 import model.remove_data
 from model.appinfo import AppInfo
 from model.story import Story
+from model.chapter import Chapter
+from model.section import Section
 
 
-class DeleteStory(webapp2.RequestHandler):
+class DeleteSection(webapp2.RequestHandler):
     def get(self):
         try:
-            id = self.request.GET['story_id']
+            id = self.request.GET['section_id']
         except:
-            id = None
-
-        if not id:
             self.redirect("/error?msg=Key missing for deletion.")
             return
 
@@ -30,7 +29,9 @@ class DeleteStory(webapp2.RequestHandler):
             access_link = users.create_logout_url("/")
 
             try:
-                story = ndb.Key(urlsafe=id).get()
+                section = ndb.Key(urlsafe=id).get()
+                chapter = Chapter.get_by_id(section.chapter)
+                story = Story.get_by_id(chapter.story)
             except:
                 self.redirect("/error?msg=Key was not found.")
                 return
@@ -40,38 +41,44 @@ class DeleteStory(webapp2.RequestHandler):
                 "user_name": user_name,
                 "access_link": access_link,
                 "story": story,
+                "chapter": chapter,
+                "section": section
             }
 
             jinja = jinja2.get_jinja2(app=self.app)
-            self.response.write(jinja.render_template("delete_story.html", **template_values));
+            self.response.write(jinja.render_template("delete_section.html", **template_values));
         else:
             self.redirect("/")
 
     def post(self):
         try:
-            id = self.request.GET['story_id']
+            section_id = self.request.GET['section_id']
         except:
             self.redirect("/error?msg=Key missing for deletion.")
             return
 
         user = users.get_current_user()
 
-        if user and id:
+        if user:
             try:
-                story = ndb.Key(urlsafe=id).get()
+                section = ndb.Key(urlsafe=section_id).get()
+                chapter = Chapter.get_by_id(section.chapter)
+                story = Story.get_by_id(chapter.story)
             except:
                 self.redirect("/error?msg=Key was not found.")
                 return
 
-            self.redirect("/info?msg=Story deleted: "
+            self.redirect("/info?msg=Section deleted: "
                 + story.title.encode("ascii", "replace")
-                + "&url=/manage_stories")
+                    + ": " + chapter.title.encode("ascii", "replace")
+                    + " - " + str(section.num)
+                + "&url=/manage_sections?chapter_id=" + chapter.key.urlsafe())
 
             # Remove story
-            model.remove_data.remove_story(story.key)
+            model.remove_data.remove_section(section.key)
         else:
             self.redirect("/")
 
 app = webapp2.WSGIApplication([
-    ("/stories/delete", DeleteStory),
+    ("/sections/delete", DeleteSection),
 ], debug=True)
