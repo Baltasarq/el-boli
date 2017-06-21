@@ -20,6 +20,11 @@ textarea {
     font-size: 12pt
 }
 
+#dvStats {
+    font-family: monospace, "Courier New";
+    font-size: 10
+}
+
 #dvInnerContents {
     width: 90%;
     margin: auto

@@ -1,6 +1,82 @@
 {% extends "skeleton.html" %}
 {% block content %}
 <script type="text/javascript">
+    window.onload = function() {
+        var edText = document.getElementById( "edText" );
+
+        edText.text_stats = { 
+            "modified": false,
+            "zwc": 0,
+            "wc": 0,
+            "cc": 0
+        };
+
+        edText.oninput = function() {
+            enableSaveButton();
+            edText.text_stats.modified = true;
+            calculateStats();
+            showStats();
+        };
+
+        disableSaveButton();
+        calculateStats();
+        showStats();
+    };
+
+    function disableSaveButton() {
+        var btSave = document.getElementById( "btSave" );
+        var dvStats = document.getElementById( "dvStats" );
+
+        btSave.disabled = true;
+        dvStats.style.color = "gray";
+        edText.text_stats.zwc = calculateWordCount( edText.value );
+
+        // Add square brackets, if needed.
+        if ( btSave.alt[ 0 ] != '[' ) {
+            btSave.alt = btSave.title = "[" + btSave.alt + "]";
+        }
+
+        return;
+    }
+
+    function enableSaveButton() {
+        var btSave = document.getElementById( "btSave" );
+
+        btSave.disabled = false;
+
+        dvStats.style.color = "black";
+
+        // Remove square brackets, if needed.
+        if ( btSave.alt[ 0 ] == '[' ) {
+            btSave.title = btSave.alt = btSave.alt.substring( 1, btSave.alt.length - 1 );
+        }
+
+        return;
+    }
+
+    function calculateWordCount(txt) {
+        return txt.split(/[\s,]+/).length;
+    }
+
+    function calculateStats() {
+        var edText = document.getElementById( "edText" );
+
+        edText.text_stats.cc = edText.value.length;
+        edText.text_stats.wc = calculateWordCount( edText.value );
+    }
+
+    function showStats() {
+        var dvStats = document.getElementById( "dvStats" );
+        var edText = document.getElementById( "edText" );
+
+        dvStats.style.display = "line";
+        dvStats.innerHTML = ( edText.text_stats.modified ? "MODIFIED" : "SAVED" )
+                                + " Crs.: " + edText.text_stats.cc
+                                + " words: " + edText.text_stats.wc
+                                + " new words: " 
+                                + ( edText.text_stats.wc - edText.text_stats.zwc );
+    }
+
     function inject(txt) {
         var edText = document.getElementById( "edText" );
 
@@ -44,12 +120,20 @@
     function chk() {
         var toret = true;
         var edText = document.getElementById( "edText" );
+        var btSave = document.getElementById( "btSave" );
 
         hideError();
 
+        // Check everything that could be wrong
         if ( edText.value.trim().length == 0 ) {
             showError( "The text is mandatory." );
             toret = false;
+        }
+
+        // Check whether to disable the save button or not
+        if ( toret ) {
+            disableSaveButton();
+            status.modified = false;
         }
 
         return toret;
@@ -77,11 +161,12 @@
                 style="border:none;background-color:lightgray">{{section.text}}</textarea>
         <br/>
         <p>
-        <input type="image"
+        <input id="btSave" type="image"
             class="styled-button"
             title="modify" alt="modify"
             width="16px" height="16px" src="/res/modify.svg"
             onsubmit="javascript: document.frmModifySection.submit()"/>
+         &nbsp;&nbsp;<span id="dvStats"></span>
         </p>
     </form>
     </div>
