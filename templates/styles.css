@@ -1,6 +1,7 @@
 .body {
     background-color: white;
-    font-family: "Arial", "Helvetica", sans-serif
+    font-family: "Arial", "Helvetica", sans-serif;
+    font-size: 10pt
 }
 
 label {
@@ -18,11 +19,6 @@ input {
 textarea {
     margin: 5px;
     font-size: 12pt
-}
-
-#dvStats {
-    font-family: monospace, "Courier New";
-    font-size: 10
 }
 
 #dvInnerContents {
@@ -100,6 +96,12 @@ textarea {
 #dvGeneralActions {
     background-color: white;
     right: 0
+}
+
+#dvStats {
+    font-family: monospace, "Courier New";
+    text-align: right;
+    font-size: 9pt;
 }
 
 input.button {

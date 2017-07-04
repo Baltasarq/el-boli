@@ -3,16 +3,20 @@
 <div id="dvInnerContents">
     <div id="dvSpecificActions" class="clsMenu">
         <a href="/manage_stories">
-            <img height="24px" width="24px" title="back" class="styled-button" src="/res/back.svg"/>
+            <img height="24px" width="24px" title="back"
+            class="styled-button" src="/res/back.svg"/>
         </a>
         <br/>
         <a href="/chapters/add?story_id={{story.key.urlsafe()}}">
-            <img height="24px" width="24px" title="new chapter" class="styled-button" src="/res/add.svg"/>
+            <img height="24px" width="24px" title="new chapter"
+            class="styled-button" src="/res/add.svg"/>
         </a>
         <br/>
         <a href="/manage_characters?story_id={{story.key.urlsafe()}}">
-            <img width="24px" height="24px" title="characters" class="styled-button" src="/res/character.svg"/>
+            <img width="24px" height="24px" title="characters"
+            class="styled-button" src="/res/character.svg"/>
         </a>
+        <br/>
     </div>
     <div id="dvTitle">
         <img height="32px" width="32px" title="chapters" src="/res/chapter.svg"/>
@@ -22,13 +26,16 @@
         {% for chapter in chapters %}
             <div id="dvEntry"><p>
                 <a href="/manage_sections?chapter_id={{chapter.key.urlsafe()}}">
-                    <img width="16px" height="16px" title="go" class="styled-button" src="/res/work.svg"/>
+                    <img width="16px" height="16px" title="go"
+                    class="styled-button" src="/res/work.svg"/>
                 </a>
                 <a href="/chapters/modify?chapter_id={{chapter.key.urlsafe()}}">
-                    <img width="16px" height="16px" title="modify" class="styled-button" src="/res/modify.svg"/>
+                    <img width="16px" height="16px" title="modify"
+                    class="styled-button" src="/res/modify.svg"/>
                 </a>
                 <a href="/chapters/delete?chapter_id={{chapter.key.urlsafe()}}">
-                    <img width="16px" height="16px" title="delete" class="styled-button" src="/res/delete.svg"/>
+                    <img width="16px" height="16px" title="delete"
+                    class="styled-button" src="/res/delete.svg"/>
                 </a>
             {% include "chapter_description.html" %}
             </p></div>
@@ -36,5 +43,8 @@
             No chapters yet.
         {% endfor %}
     </div>
+    {%  if chapters.count() > 0 %}
+        {%  include "stats.html" %}
+    {% endif %}
 </div>
 {% endblock %}

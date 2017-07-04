@@ -14,6 +14,8 @@ from model.story import Story
 from model.chapter import Chapter
 from model.section import Section
 
+from stories.stats import count_chapter
+
 
 class SectionsManager(webapp2.RequestHandler):
     def get(self):
@@ -35,7 +37,9 @@ class SectionsManager(webapp2.RequestHandler):
                 self.redirect("/error?msg=Key was not found.")
                 return
 
-            sections = Section.query(Section.chapter == chapter.key.id()).order(Section.num)
+            sections = Section.query(
+                Section.chapter == chapter.key.id()).order(Section.num)
+            total_stats = count_chapter(chapter.key.id())
             access_link = users.create_logout_url("/")
 
             template_values = {
@@ -44,7 +48,10 @@ class SectionsManager(webapp2.RequestHandler):
                 "access_link": access_link,
                 "story": story,
                 "chapter": chapter,
-                "sections": sections
+                "sections": sections,
+                "total_crs": total_stats["crs"],
+                "total_ws": total_stats["ws"],
+                "total_pgs": total_stats["pgs"]
             }
 
             jinja = jinja2.get_jinja2(app=self.app)
