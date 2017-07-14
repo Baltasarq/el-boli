@@ -34,7 +34,7 @@ def count_text(text):
 
 
 def count_chapter(chapter_id):
-    toret = {}
+    toret = { "crs": 0, "ws": 0, "pgs": 0 }
     sections = Section.query(Section.chapter == chapter_id)
         
     for section in sections:
@@ -48,7 +48,7 @@ def count(story_id):
         
         :param story_id: The id for a story to extract stats from.
     """
-    toret = {}
+    toret = { "crs": 0, "ws": 0, "pgs": 0 }
     chapter_keys = Chapter.query(
                         Chapter.story == story_id).fetch(keys_only=True)
 
