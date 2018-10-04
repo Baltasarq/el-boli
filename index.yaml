@@ -29,3 +29,9 @@ indexes:
   properties:
   - name: chapter
   - name: num
+
+- kind: Story
+  properties:
+  - name: user
+  - name: added
+    direction: desc

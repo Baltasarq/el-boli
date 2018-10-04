@@ -1,6 +1,6 @@
 # Boli
 # GAE application to assist in the process of writing
-# MAnage stories inside a user
+# Manage stories belonging to a user
 
 import webapp2
 from webapp2_extras import jinja2
@@ -13,12 +13,11 @@ from model.story import Story
 
 class StoriesManager(webapp2.RequestHandler):
     def get(self):
-        user_name = "login"
         user = users.get_current_user()
         
         if user:
             user_name = user.nickname()
-            stories = Story.query().order(-Story.added)
+            stories = Story.query(Story.user == user.user_id()).order(-Story.added)
             access_link = users.create_logout_url("/")
 
             template_values = {

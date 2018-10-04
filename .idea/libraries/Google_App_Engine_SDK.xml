@@ -2,50 +2,6 @@
   <library name="Google App Engine SDK" type="python">
     <CLASSES>
       <root url="file://$USER_HOME$/bin/gae-sdk" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/six" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/google-api-python-client" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/endpoints-1.0" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/websocket" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/pyasn1" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/distutils" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/docker" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/cacerts" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/httplib2" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/requests" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/prettytable" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/oauth2client_devserver" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/grizzled" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/pyasn1_modules" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/markupsafe-0.15" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/deprecated_enum" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/uritemplate" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/graphy" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/setuptools-0.6c11" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/markupsafe-0.23" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/concurrent" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/portpicker" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/PyAMF-0.7.2" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/argparse" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/mox" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/simplejson" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/fancy_urllib" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/ipaddr" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/protorpc-1.0" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/python-gflags" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/jinja2-2.6" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/PyAMF-0.6.1" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/oauth2" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/apiclient" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/sqlcmd" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/cherrypy" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/oauth2client" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/werkzeug-0.11.10" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/antlr3" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/rsa" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/django-1.9" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/webapp2-2.5.2" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/webob-1.2.3" />
-      <root url="file://$USER_HOME$/bin/gae-sdk/lib/yaml-3.10" />
     </CLASSES>
     <SOURCES />
   </library>
