@@ -5,16 +5,12 @@
       <configuration>
         <option name="rootFolder" value="$MODULE_DIR$" />
         <option name="sdkFolder" value="$USER_HOME$/bin/gae" />
-        <option name="templatesFolder" value="" />
-        <option name="oauth2" value="false" />
-        <option name="deployConfigured" value="false" />
-        <option name="saveCredentials" value="false" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 2.7.13 (/usr/bin/python2.7)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 2.7 (esei-infra-ticket)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Google App Engine SDK" level="project" />
   </component>

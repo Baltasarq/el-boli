@@ -87,11 +87,13 @@
             edText.value = edText.value.substring( 0, startPos )
                 + txt
                 + edText.value.substring( endPos, edText.value.length );
+
+            edText.selectionStart = edText.selectionEnd = startPos + txt.length;
         } else {
             edText.value += txt;
         }
 
-        return;
+        edText.focus();
     }
 
     function showCharacters() {
@@ -139,6 +141,7 @@
         return toret;
     }
 </script>
+
 <div id="dvInnerContents">
     <div id="dvSpecificActions" class="clsMenu">
         <a href="/manage_sections?chapter_id={{chapter.key.urlsafe()}}">
@@ -148,6 +151,17 @@
     <div id="dvTitle">
     <p><img height="32px" width="32px" title="sections" src="/res/section.svg"/>
         Modify Section #{{section.num}} of <i>{{story.title}}: {{chapter.title}}</i></p>
+    </div>
+    <div id="injectChars" style="float: left">
+        <br/><a href="javascript: inject('&aacute;')">&aacute;</a>&nbsp;<a href="javascript: inject('&Aacute;')">&Aacute;</a>
+        <br/><a href="javascript: inject('&eacute;')">&eacute;</a>&nbsp;<a href="javascript: inject('&Eacute;')">&Eacute;</a>
+        <br/><a href="javascript: inject('&iacute;')">&iacute;</a>&nbsp;<a href="javascript: inject('&Iacute;')">&Iacute;</a>
+        <br/><a href="javascript: inject('&oacute;')">&oacute;</a>&nbsp;<a href="javascript: inject('&Oacute;')">&Oacute;</a>
+        <br/><a href="javascript: inject('&uacute;')">&uacute;</a>&nbsp;<a href="javascript: inject('&Uacute;')">&Uacute;</a>
+        <br/><a href="javascript: inject('&ntilde;')">&ntilde;</a>&nbsp;<a href="javascript: inject('&Ntilde;')">&Ntilde;</a>
+        <br/><a href="javascript: inject('&uuml;')">&uuml;</a>&nbsp;<a href="javascript: inject('&Uuml;')">&Uuml;</a>
+        <br/><a href="javascript: inject('&iquest;')">&iquest;</a>&nbsp;<a href="javascript: inject('&iexcl;')">&iexcl;</a>
+        <br/><a href="javascript: inject('&ndash;')">&ndash;</a>&nbsp;<a href="javascript: inject('&mdash;')">&mdash;</a>
     </div>
     <div id="dvBody">
     <p>
