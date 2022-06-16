@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ story.title }}</title>
+</head>
+<body>
+    <h1>{{ story.title }}</h1>
+    <h2>{{ user_name }}</h2>
+
+    <p style="margin-left: 30%"><i>{{ story.summary }}</i></p>
+
+    {% for chapter in chapters %}
+        <h2>{{ chapter.title }}</h2>
+        <p style="margin-left: 30%"><i>{{ chapter.summary }}</i></p>
+
+        {% for section in all_sections[chapter.num] %}
+            {{ section.text }}
+            <hr width="5%">
+        {% else %}
+            <p>No sections.</p>
+        {%  endfor %}
+    {%  else %}
+        <p>No chapters.</p>
+    {% endfor %}
+</body>
+</html>
