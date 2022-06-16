@@ -1,5 +1,5 @@
-application: el-boli
-version: 2
+# application: el-boli
+# version: 2
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -36,6 +36,10 @@ handlers:
   
 - url: /stories/delete
   script: handlers.stories.delete.app
+  login: required
+
+- url: /stories/export
+  script: handlers.stories.export.app
   login: required
 
 - url: /manage_chapters
