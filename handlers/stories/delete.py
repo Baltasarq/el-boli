@@ -9,7 +9,6 @@ from webapp2_extras import jinja2
 
 import model.remove_data
 from model.appinfo import AppInfo
-from model.story import Story
 
 
 class DeleteStory(webapp2.RequestHandler):

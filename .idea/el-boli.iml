@@ -4,9 +4,12 @@
     <facet type="google-appengine-python" name="Google App Engine (Python)">
       <configuration>
         <option name="rootFolder" value="$MODULE_DIR$" />
-        <option name="sdkFolder" value="$USER_HOME$/bin/gae" />
+        <option name="sdkFolder" value="$USER_HOME$/bin/google-cloud-sdk/platform/google_appengine" />
       </configuration>
     </facet>
+  </component>
+  <component name="Flask">
+    <option name="enabled" value="true" />
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
